@@ -5,18 +5,15 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net;
-using System.Threading;
+using System.Net.Http;
 using System.Windows.Forms;
 using System.Xml;
-using System.Xml.Serialization;
-using ICSharpCode.SharpZipLib.Zip;
 
 namespace UniversalGameLauncher
 {
     public partial class Application : Form
     {
         private DownloadProgressTracker _downloadProgressTracker;
-        private WebClient _webClient;
 
         public Version LocalVersion { get { return new Version(Properties.Settings.Default.VersionText); } }
         public Version OnlineVersion { get; private set; }
@@ -38,7 +35,18 @@ namespace UniversalGameLauncher
             }
         }
 
-        public bool UpToDate { get { return LocalVersion >= OnlineVersion; } }
+        public bool UpToDate
+        {
+            get
+            {
+                if (OnlineVersion == null)
+                {
+                    return true;
+                }
+
+                return LocalVersion >= OnlineVersion;
+            }
+        }
 
         public Application()
         {
@@ -89,30 +97,104 @@ namespace UniversalGameLauncher
             try
             {
                 LoadApplicationIcon();
-                navbarPanel.BackColor = Color.FromArgb(25, 100, 100, 100); // // Make panel background semi transparent
+
+                navbarPanel.BackColor = Color.FromArgb(Constants.PANEL_ALPHA, 0, 0, 0); // Make panel background semi transparent
                 logoPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
-                closePictureBox.SizeMode = PictureBoxSizeMode.CenterImage; // Center the X icon
-                minimizePictureBox.SizeMode = PictureBoxSizeMode.CenterImage; // Center the - icon
-                logoPictureBox.Load(Constants.LOGO_URL);
-                using (WebClient webClient = new WebClient())
+                closePictureBox.SizeMode = PictureBoxSizeMode.CenterImage;              // Center the X icon
+                minimizePictureBox.SizeMode = PictureBoxSizeMode.CenterImage;           // Center the - icon
+
+                if (Constants.PANEL_ALPHA > 128)
                 {
-                    using (Stream stream = webClient.OpenRead(Constants.BACKGROUND_URL))
-                    {
-                        BackgroundImage = Image.FromStream(stream);
-                    }
+                    closePictureBox.BackColor = Color.FromArgb(255, 255, 255, 255);
+                    minimizePictureBox.BackColor = Color.FromArgb(255, 255, 255, 255);
                 }
+                else
+                {
+                    closePictureBox.BackColor = Color.FromArgb(0, 255, 255, 255);
+                    minimizePictureBox.BackColor = Color.FromArgb(0, 255, 255, 255);
+                }
+
+                this.LoadLogoImage();
+                this.LoadBackgroundImage();
             }
             catch (Exception e)
             {
-                MessageBox.Show("The launcher was unable to retrieve some game images from the server! " + e, "Error");
+                MessageBox.Show("The launcher was unable to retrieve some game images from the server! " + e.Message, "Error");
+            }
+        }
+
+        private void LoadLogoImage()
+        {
+            if (Constants.CACHE_IMAGES)
+            {
+                string filename = "logo_" + Constants.LOGO_URL.Substring(Constants.LOGO_URL.LastIndexOf('/') + 1);
+
+                if (!File.Exists(filename))
+                {
+                    DownloadFileSync(Constants.LOGO_URL, filename);
+                }
+
+                logoPictureBox.LoadAsync(filename);
+                return;
+            }
+
+            logoPictureBox.LoadAsync(Constants.LOGO_URL);
+        }
+
+        private void LoadBackgroundImage()
+        {
+            if (Constants.CACHE_IMAGES)
+            {
+                string filename = "bg_" + Constants.BACKGROUND_URL.Substring(Constants.BACKGROUND_URL.LastIndexOf('/') + 1);
+
+                if (!File.Exists(filename))
+                {
+                    DownloadFileSync(Constants.BACKGROUND_URL, filename);
+                }
+
+                BackgroundImage = Image.FromFile(filename);
+                return;
+            }
+
+            using (var webClient = new WebClient())
+            {
+                using (Stream stream = webClient.OpenRead(Constants.BACKGROUND_URL))
+                {
+                    BackgroundImage = Image.FromStream(stream);
+                }
+            }
+        }
+
+        private void DownloadFileSync(string url, string name)
+        {
+            using (var client = new WebClient())
+            {
+                client.DownloadFile(url, name);
             }
         }
 
         private void LoadApplicationIcon()
         {
+            if (Constants.CACHE_IMAGES)
+            {
+                if (!File.Exists("app_icon.ico"))
+                {
+                    DownloadFileSync(Constants.APPLICATION_ICON_URL, "app_icon.ico");
+                }
+
+                using (var img = Image.FromFile("app_icon.ico"))
+                {
+                    using (var bm = new Bitmap(img))
+                    {
+                        Icon = Icon.FromHandle(bm.GetHicon());
+                    }
+                }
+
+                return;
+            }
+
             WebRequest request = (HttpWebRequest)WebRequest.Create(Constants.APPLICATION_ICON_URL);
 
-            Bitmap bm = new Bitmap(32, 32);
             MemoryStream memStream;
 
             using (Stream response = request.GetResponse().GetResponseStream())
@@ -128,13 +210,13 @@ namespace UniversalGameLauncher
                 } while (byteCount > 0);
             }
 
-            bm = new Bitmap(Image.FromStream(memStream));
-
-            if (bm != null)
+            using (var bm = new Bitmap(Image.FromStream(memStream)))
             {
-                Icon = Icon.FromHandle(bm.GetHicon());
+                if (bm != null)
+                {
+                    Icon = Icon.FromHandle(bm.GetHicon());
+                }
             }
-
         }
 
         private void InitializeVersionControl()
@@ -189,13 +271,12 @@ namespace UniversalGameLauncher
 
         private void DownloadFile()
         {
-            using (_webClient = new WebClient())
+            using (var webClient = new WebClient())
             {
-                _webClient.DownloadProgressChanged += OnDownloadProgressChanged;
-                _webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(OnDownloadCompleted);
-                _webClient.DownloadFileAsync(new Uri(Constants.CLIENT_DOWNLOAD_URL), Constants.ZIP_PATH);
+                webClient.DownloadProgressChanged += OnDownloadProgressChanged;
+                webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(OnDownloadCompleted);
+                webClient.DownloadFileAsync(new Uri(Constants.CLIENT_DOWNLOAD_URL), Constants.ZIP_PATH);
             }
-
         }
 
         private void OnDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
@@ -376,13 +457,27 @@ namespace UniversalGameLauncher
         private void OnMouseEnterIcon(object sender, EventArgs e)
         {
             var pictureBox = (PictureBox)sender;
-            pictureBox.BackColor = Color.FromArgb(50, 255, 255, 255);
+            if (Constants.PANEL_ALPHA > 128)
+            {
+                pictureBox.BackColor = Color.FromArgb(250, 255, 255, 255);
+            }
+            else
+            {
+                pictureBox.BackColor = Color.FromArgb(50, 255, 255, 255);
+            }
         }
 
         private void OnMouseLeaveIcon(object sender, EventArgs e)
         {
             var pictureBox = (PictureBox)sender;
-            pictureBox.BackColor = Color.FromArgb(0, 255, 255, 255);
+            if (Constants.PANEL_ALPHA > 128)
+            {
+                pictureBox.BackColor = Color.FromArgb(255, 255, 255, 255);
+            }
+            else
+            {
+                pictureBox.BackColor = Color.FromArgb(0, 255, 255, 255);
+            }
         }
 
         private void minimizePictureBox_Click(object sender, EventArgs e)
