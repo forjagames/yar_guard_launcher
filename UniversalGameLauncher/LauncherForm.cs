@@ -15,7 +15,18 @@ namespace UniversalGameLauncher
     {
         private DownloadProgressTracker _downloadProgressTracker;
 
-        public Version LocalVersion { get { return new Version(Properties.Settings.Default.VersionText); } }
+        public Version LocalVersion
+        {
+            get
+            {
+                if (!File.Exists("local_version.txt"))
+                {
+                    return new Version(0, 0, 0, 1);
+                }
+
+                return new Version(File.ReadAllText("local_version.txt"));
+            }
+        }
         public Version OnlineVersion { get; private set; }
 
         private List<PatchNoteBlock> patchNoteBlocks = new List<PatchNoteBlock>();
@@ -70,7 +81,7 @@ namespace UniversalGameLauncher
 
             if (!UpToDate && Constants.AUTOMATICALLY_BEGIN_UPDATING)
             {
-                DownloadFile();
+                DownloadAndExtractLatestVersionAsync();
             }
         }
 
@@ -265,16 +276,16 @@ namespace UniversalGameLauncher
             }
             else
             {
-                DownloadFile();
+                DownloadAndExtractLatestVersionAsync();
             }
         }
 
-        private void DownloadFile()
+        private void DownloadAndExtractLatestVersionAsync()
         {
             using (var webClient = new WebClient())
             {
                 webClient.DownloadProgressChanged += OnDownloadProgressChanged;
-                webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(OnDownloadCompleted);
+                webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(FinishDownloadAndExtractLatestVersion);
                 webClient.DownloadFileAsync(new Uri(Constants.CLIENT_DOWNLOAD_URL), Constants.ZIP_PATH);
             }
         }
@@ -288,41 +299,70 @@ namespace UniversalGameLauncher
 
         }
 
-        private void OnDownloadCompleted(object sender, AsyncCompletedEventArgs e)
+        private void FinishDownloadAndExtractLatestVersion(object sender, AsyncCompletedEventArgs e)
         {
             _downloadProgressTracker.Reset();
             updateLabelText.Text = "Download finished - extracting...";
 
             Extract extract = new Extract(this);
-            extract.Run();
+            extract.Run(SetLauncherReady);
         }
 
-        public void SetLauncherReady()
+        private void SetLauncherReady(RunWorkerCompletedEventArgs args)
         {
-            updateLabelText.Text = "";
-            if (!File.Exists(Constants.GAME_EXECUTABLE_PATH))
-            {
-                MessageBox.Show("Couldn't make a connection to the game server. Please try again later or inform the developer if the issue persists.", "Fatal error");
-                return;
-            }
-
-            currentVersionLabel.Text = OnlineVersion.ToString();
-            Properties.Settings.Default.VersionText = OnlineVersion.ToString();
-            Properties.Settings.Default.Save();
-            Console.WriteLine("Updated version. Now running on version: " + LocalVersion);
-            IsReady = true;
-
-            if (Constants.AUTOMATICALLY_LAUNCH_GAME_AFTER_UPDATING)
-                LaunchGame();
-
             try
             {
-                File.Delete(Constants.ZIP_PATH);
+                if (args.Error != null)
+                {
+                    throw new Exception(args.Error.Message);
+                }
+
+                if (args.Cancelled)
+                {
+                    throw new Exception("The download was cancelled.");
+                }
+
+                updateLabelText.Text = "";
+
+                if (!File.Exists(Constants.GAME_EXECUTABLE_PATH))
+                {
+                    throw new Exception("Couldn't make a connection to the game server. Please try again later or inform the developer if the issue persists.");
+                }
+
+                SaveOnlineVersion();
+
+                IsReady = true;
+
+                if (Constants.AUTOMATICALLY_LAUNCH_GAME_AFTER_UPDATING)
+                {
+                    LaunchGame();
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Couldn't delete the downloaded zip file after extraction.");
+                MessageBox.Show(ex.Message, "Update failed");
             }
+            finally
+            {
+                try
+                {
+                    File.Delete(Constants.ZIP_PATH);
+                }
+                catch
+                {
+                    MessageBox.Show("Couldn't delete the downloaded zip file after extraction.");
+                }
+            }
+        }
+
+        private void SaveOnlineVersion()
+        {
+            currentVersionLabel.Text = OnlineVersion.ToString();
+
+            //Properties.Settings.Default.VersionText = OnlineVersion.ToString();
+            //Properties.Settings.Default.Save();
+
+            File.WriteAllText("local_version.txt", OnlineVersion.ToString());
         }
 
         private void FetchPatchNotes()
@@ -360,13 +400,22 @@ namespace UniversalGameLauncher
                     MessageBox.Show("The launcher was unable to retrieve patch notes from the server!");
             }
 
+            var controles = new[] { patchPanel1, patchPanel2, patchPanel3 };
+            foreach (var control in controles)
+            {
+                control.Visible = false;
+            }
+
+            Button[] patchButtons = { patchButton1, patchButton2, patchButton3 };
             Label[] patchTitleObjects = { patchTitle1, patchTitle2, patchTitle3 };
             Label[] patchTextObjects = { patchText1, patchText2, patchText3 };
 
             for (int i = 0; i < patchNoteBlocks.Count; i++)
             {
+                controles[i].Visible = true;
                 patchTitleObjects[i].Text = patchNoteBlocks[i].Title;
                 patchTextObjects[i].Text = patchNoteBlocks[i].Text;
+                patchButtons[i].Visible = !string.IsNullOrEmpty(patchNoteBlocks[i].Link);
             }
         }
 
@@ -380,7 +429,7 @@ namespace UniversalGameLauncher
             catch
             {
                 IsReady = false;
-                DownloadFile();
+                DownloadAndExtractLatestVersionAsync();
                 MessageBox.Show("Couldn't locate the game executable! Attempting to redownload - please wait.", "Fatal Error");
             }
         }
@@ -459,7 +508,7 @@ namespace UniversalGameLauncher
             var pictureBox = (PictureBox)sender;
             if (Constants.PANEL_ALPHA > 128)
             {
-                pictureBox.BackColor = Color.FromArgb(250, 255, 255, 255);
+                pictureBox.BackColor = Color.FromArgb(180, 255, 255, 255);
             }
             else
             {

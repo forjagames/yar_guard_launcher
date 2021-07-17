@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UniversalGameLauncher
 {
@@ -20,15 +16,15 @@ namespace UniversalGameLauncher
         /// <summary>
         /// Paths & urls
         /// </summary>
-        public static readonly string DESTINATION_PATH = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), GAME_TITLE);
-        public static readonly string ZIP_PATH = Path.Combine(DESTINATION_PATH, GAME_TITLE + ".zip");
+        public static readonly string DESTINATION_PATH = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), GAME_EXE);
+        public static readonly string ZIP_PATH = Path.Combine(DESTINATION_PATH, GAME_EXE + ".zip");
         public static readonly string GAME_EXECUTABLE_PATH = Path.Combine(DESTINATION_PATH, GAME_EXE + ".exe");
 
         public static readonly string VERSION_URL = "https://lucianorasente.com/downloads/games/yar_guard/version.txt";
         public static readonly string APPLICATION_ICON_URL = "https://lucianorasente.com/downloads/games/yar_guard/favicon.ico";            // Needs to be .ico
         public static readonly string LOGO_URL = "https://lucianorasente.com/downloads/games/yar_guard/logo_283x75.png";                    // Ideally around 283x75
         public static readonly string BACKGROUND_URL = "https://lucianorasente.com/downloads/games/yar_guard/yarguard.png";
-        public static readonly string PATCH_NOTES_URL = "https://temsoft.io/temsoft_assets/updates.xml";
+        public static readonly string PATCH_NOTES_URL = "https://lucianorasente.com/downloads/games/yar_guard/updates.xml";
         public static readonly string CLIENT_DOWNLOAD_URL = "https://lucianorasente.com/downloads/games/yar_guard/game.zip";
 
         /// <summary>

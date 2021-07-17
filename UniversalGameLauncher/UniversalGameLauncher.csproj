@@ -156,5 +156,8 @@
   <ItemGroup>
     <None Include="Resources\playbuttontest.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="updates.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
