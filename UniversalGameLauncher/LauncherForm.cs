@@ -79,7 +79,7 @@ namespace UniversalGameLauncher
 
             _downloadProgressTracker = new DownloadProgressTracker(50, TimeSpan.FromMilliseconds(500));
 
-            if (!UpToDate && Constants.AUTOMATICALLY_BEGIN_UPDATING)
+            if (!UpToDate && ((LocalVersion.Major == 0 && LocalVersion.Minor == 0 && LocalVersion.Build == 0) || Constants.AUTOMATICALLY_BEGIN_UPDATING))
             {
                 DownloadAndExtractLatestVersionAsync();
             }
@@ -92,7 +92,6 @@ namespace UniversalGameLauncher
             SetUpButtonEvents();
 
             currentVersionLabel.Visible = Constants.SHOW_VERSION_TEXT;
-
         }
 
         private void InitializeFiles()
@@ -232,10 +231,13 @@ namespace UniversalGameLauncher
 
         private void InitializeVersionControl()
         {
-            currentVersionLabel.Text = Properties.Settings.Default.VersionText;
+            currentVersionLabel.Text = LocalVersion.ToString();
             OnlineVersion = GetOnlineVersion();
 
-            Console.WriteLine("We are on version " + LocalVersion + " and the online version is " + OnlineVersion);
+            if (OnlineVersion != null && OnlineVersion != LocalVersion)
+            {
+                currentVersionLabel.Text += " (New version found: " + OnlineVersion.ToString() + ")";
+            }
         }
 
         private void InitializeFooter()
@@ -282,6 +284,8 @@ namespace UniversalGameLauncher
 
         private void DownloadAndExtractLatestVersionAsync()
         {
+            this.playButton.Enabled = false;
+
             using (var webClient = new WebClient())
             {
                 webClient.DownloadProgressChanged += OnDownloadProgressChanged;
@@ -296,16 +300,23 @@ namespace UniversalGameLauncher
             updateProgressBar.Value = e.ProgressPercentage;
             updateLabelText.Text = string.Format("Downloading: {0} of {1} @ {2}", StringUtility.FormatBytes(e.BytesReceived),
                 StringUtility.FormatBytes(e.TotalBytesToReceive), _downloadProgressTracker.GetBytesPerSecondString());
-
         }
 
         private void FinishDownloadAndExtractLatestVersion(object sender, AsyncCompletedEventArgs e)
         {
-            _downloadProgressTracker.Reset();
-            updateLabelText.Text = "Download finished - extracting...";
+            try
+            {
+                _downloadProgressTracker.Reset();
+                updateLabelText.Text = "Download finished - extracting...";
 
-            Extract extract = new Extract(this);
-            extract.Run(SetLauncherReady);
+                Extract extract = new Extract(this);
+                extract.Run(SetLauncherReady);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                this.playButton.Enabled = true;
+            }
         }
 
         private void SetLauncherReady(RunWorkerCompletedEventArgs args)
@@ -352,6 +363,8 @@ namespace UniversalGameLauncher
                 {
                     MessageBox.Show("Couldn't delete the downloaded zip file after extraction.");
                 }
+
+                this.playButton.Enabled = true;
             }
         }
 

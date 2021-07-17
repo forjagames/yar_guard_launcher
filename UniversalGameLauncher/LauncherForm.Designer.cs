@@ -88,9 +88,9 @@
             this.currentVersionLabel.ForeColor = System.Drawing.SystemColors.Control;
             this.currentVersionLabel.Location = new System.Drawing.Point(18, 544);
             this.currentVersionLabel.Name = "currentVersionLabel";
-            this.currentVersionLabel.Size = new System.Drawing.Size(40, 13);
+            this.currentVersionLabel.Size = new System.Drawing.Size(11, 13);
             this.currentVersionLabel.TabIndex = 3;
-            this.currentVersionLabel.Text = "1.0.0.0";
+            this.currentVersionLabel.Text = "-";
             // 
             // navbarButton2
             // 
