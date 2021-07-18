@@ -51,6 +51,9 @@
             this.patchContainerPanel = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.playButton = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.navbarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizePictureBox)).BeginInit();
@@ -59,14 +62,15 @@
             this.patchPanel2.SuspendLayout();
             this.patchPanel3.SuspendLayout();
             this.patchContainerPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // updateProgressBar
             // 
             this.updateProgressBar.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.updateProgressBar.Location = new System.Drawing.Point(17, 571);
+            this.updateProgressBar.Location = new System.Drawing.Point(12, 12);
             this.updateProgressBar.Name = "updateProgressBar";
-            this.updateProgressBar.Size = new System.Drawing.Size(802, 60);
+            this.updateProgressBar.Size = new System.Drawing.Size(802, 61);
             this.updateProgressBar.TabIndex = 1;
             this.updateProgressBar.Visible = false;
             // 
@@ -86,21 +90,23 @@
             this.currentVersionLabel.AutoSize = true;
             this.currentVersionLabel.BackColor = System.Drawing.Color.Transparent;
             this.currentVersionLabel.ForeColor = System.Drawing.SystemColors.Control;
-            this.currentVersionLabel.Location = new System.Drawing.Point(18, 544);
+            this.currentVersionLabel.Location = new System.Drawing.Point(18, 545);
             this.currentVersionLabel.Name = "currentVersionLabel";
-            this.currentVersionLabel.Size = new System.Drawing.Size(11, 13);
+            this.currentVersionLabel.Size = new System.Drawing.Size(8, 9);
             this.currentVersionLabel.TabIndex = 3;
             this.currentVersionLabel.Text = "-";
             // 
             // navbarButton2
             // 
             this.navbarButton2.BackColor = System.Drawing.Color.Transparent;
+            this.navbarButton2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.navbarButton2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.navbarButton2.FlatAppearance.BorderSize = 0;
             this.navbarButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.navbarButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.navbarButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.navbarButton2.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.navbarButton2.Font = new System.Drawing.Font("Arizone Pixel", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navbarButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.navbarButton2.Location = new System.Drawing.Point(433, 0);
             this.navbarButton2.Name = "navbarButton2";
             this.navbarButton2.Size = new System.Drawing.Size(125, 72);
@@ -137,10 +143,11 @@
             // 
             // minimizePictureBox
             // 
-            this.minimizePictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.minimizePictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.minimizePictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.minimizePictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.minimizePictureBox.Image = global::UniversalGameLauncher.Properties.Resources.minimize_12x12;
-            this.minimizePictureBox.Location = new System.Drawing.Point(955, 3);
+            this.minimizePictureBox.Location = new System.Drawing.Point(969, 3);
             this.minimizePictureBox.Name = "minimizePictureBox";
             this.minimizePictureBox.Size = new System.Drawing.Size(25, 25);
             this.minimizePictureBox.TabIndex = 1;
@@ -151,8 +158,9 @@
             // 
             // closePictureBox
             // 
-            this.closePictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.closePictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.closePictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.closePictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.closePictureBox.Image = global::UniversalGameLauncher.Properties.Resources.cancel_12x12;
             this.closePictureBox.Location = new System.Drawing.Point(1000, 3);
             this.closePictureBox.Name = "closePictureBox";
@@ -166,12 +174,14 @@
             // navbarButton5
             // 
             this.navbarButton5.BackColor = System.Drawing.Color.Transparent;
+            this.navbarButton5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.navbarButton5.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.navbarButton5.FlatAppearance.BorderSize = 0;
             this.navbarButton5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.navbarButton5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.navbarButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.navbarButton5.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.navbarButton5.Font = new System.Drawing.Font("Arizone Pixel", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navbarButton5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.navbarButton5.Location = new System.Drawing.Point(823, 0);
             this.navbarButton5.Name = "navbarButton5";
             this.navbarButton5.Size = new System.Drawing.Size(125, 72);
@@ -183,12 +193,14 @@
             // navbarButton4
             // 
             this.navbarButton4.BackColor = System.Drawing.Color.Transparent;
+            this.navbarButton4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.navbarButton4.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.navbarButton4.FlatAppearance.BorderSize = 0;
             this.navbarButton4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.navbarButton4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.navbarButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.navbarButton4.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.navbarButton4.Font = new System.Drawing.Font("Arizone Pixel", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navbarButton4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.navbarButton4.Location = new System.Drawing.Point(693, 0);
             this.navbarButton4.Name = "navbarButton4";
             this.navbarButton4.Size = new System.Drawing.Size(125, 72);
@@ -200,15 +212,17 @@
             // navbarButton3
             // 
             this.navbarButton3.BackColor = System.Drawing.Color.Transparent;
+            this.navbarButton3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.navbarButton3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.navbarButton3.FlatAppearance.BorderSize = 0;
             this.navbarButton3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.navbarButton3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.navbarButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.navbarButton3.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.navbarButton3.Font = new System.Drawing.Font("Arizone Pixel", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navbarButton3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.navbarButton3.Location = new System.Drawing.Point(563, 0);
             this.navbarButton3.Name = "navbarButton3";
-            this.navbarButton3.Size = new System.Drawing.Size(125, 72);
+            this.navbarButton3.Size = new System.Drawing.Size(135, 72);
             this.navbarButton3.TabIndex = 0;
             this.navbarButton3.TabStop = false;
             this.navbarButton3.Text = "Community";
@@ -217,12 +231,14 @@
             // navbarButton1
             // 
             this.navbarButton1.BackColor = System.Drawing.Color.Transparent;
+            this.navbarButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.navbarButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.navbarButton1.FlatAppearance.BorderSize = 0;
             this.navbarButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.navbarButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.navbarButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.navbarButton1.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.navbarButton1.Font = new System.Drawing.Font("Arizone Pixel", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navbarButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.navbarButton1.Location = new System.Drawing.Point(303, 0);
             this.navbarButton1.Name = "navbarButton1";
             this.navbarButton1.Size = new System.Drawing.Size(125, 72);
@@ -234,10 +250,10 @@
             // clientReadyLabel
             // 
             this.clientReadyLabel.BackColor = System.Drawing.Color.Transparent;
-            this.clientReadyLabel.Font = new System.Drawing.Font("Segoe UI", 15.25F);
-            this.clientReadyLabel.Location = new System.Drawing.Point(499, 581);
+            this.clientReadyLabel.Font = new System.Drawing.Font("Arizone Unicase", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clientReadyLabel.Location = new System.Drawing.Point(271, 12);
             this.clientReadyLabel.Name = "clientReadyLabel";
-            this.clientReadyLabel.Size = new System.Drawing.Size(320, 46);
+            this.clientReadyLabel.Size = new System.Drawing.Size(543, 60);
             this.clientReadyLabel.TabIndex = 4;
             this.clientReadyLabel.Text = "Your client is up to date!";
             this.clientReadyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -248,7 +264,7 @@
             this.patchPanel1.Controls.Add(this.patchText1);
             this.patchPanel1.Controls.Add(this.patchButton1);
             this.patchPanel1.Controls.Add(this.patchTitle1);
-            this.patchPanel1.Location = new System.Drawing.Point(30, 76);
+            this.patchPanel1.Location = new System.Drawing.Point(30, 77);
             this.patchPanel1.Name = "patchPanel1";
             this.patchPanel1.Size = new System.Drawing.Size(195, 300);
             this.patchPanel1.TabIndex = 5;
@@ -257,23 +273,25 @@
             // 
             this.patchText1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.patchText1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.patchText1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.patchText1.Font = new System.Drawing.Font("Arizone Pixel", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.patchText1.ForeColor = System.Drawing.SystemColors.Control;
             this.patchText1.Location = new System.Drawing.Point(0, 42);
             this.patchText1.Name = "patchText1";
-            this.patchText1.Size = new System.Drawing.Size(195, 216);
+            this.patchText1.Padding = new System.Windows.Forms.Padding(4);
+            this.patchText1.Size = new System.Drawing.Size(195, 217);
             this.patchText1.TabIndex = 3;
             // 
             // patchButton1
             // 
             this.patchButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.patchButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.patchButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.patchButton1.FlatAppearance.BorderSize = 0;
             this.patchButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.patchButton1.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.patchButton1.Font = new System.Drawing.Font("Beon", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.patchButton1.Location = new System.Drawing.Point(0, 253);
             this.patchButton1.Name = "patchButton1";
-            this.patchButton1.Size = new System.Drawing.Size(195, 47);
+            this.patchButton1.Size = new System.Drawing.Size(195, 48);
             this.patchButton1.TabIndex = 2;
             this.patchButton1.TabStop = false;
             this.patchButton1.Text = "Read more...";
@@ -283,7 +301,7 @@
             // patchTitle1
             // 
             this.patchTitle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.patchTitle1.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.patchTitle1.Font = new System.Drawing.Font("Arizone Unicase", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.patchTitle1.Location = new System.Drawing.Point(0, 0);
             this.patchTitle1.Name = "patchTitle1";
             this.patchTitle1.Size = new System.Drawing.Size(195, 42);
@@ -297,7 +315,7 @@
             this.patchPanel2.Controls.Add(this.patchText2);
             this.patchPanel2.Controls.Add(this.patchButton2);
             this.patchPanel2.Controls.Add(this.patchTitle2);
-            this.patchPanel2.Location = new System.Drawing.Point(260, 76);
+            this.patchPanel2.Location = new System.Drawing.Point(260, 77);
             this.patchPanel2.Name = "patchPanel2";
             this.patchPanel2.Size = new System.Drawing.Size(195, 300);
             this.patchPanel2.TabIndex = 5;
@@ -306,23 +324,25 @@
             // 
             this.patchText2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.patchText2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.patchText2.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.patchText2.Font = new System.Drawing.Font("Arizone Pixel", 6F);
             this.patchText2.ForeColor = System.Drawing.SystemColors.Control;
             this.patchText2.Location = new System.Drawing.Point(0, 42);
             this.patchText2.Name = "patchText2";
-            this.patchText2.Size = new System.Drawing.Size(195, 216);
+            this.patchText2.Padding = new System.Windows.Forms.Padding(4);
+            this.patchText2.Size = new System.Drawing.Size(195, 217);
             this.patchText2.TabIndex = 3;
             // 
             // patchButton2
             // 
             this.patchButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.patchButton2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.patchButton2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.patchButton2.FlatAppearance.BorderSize = 0;
             this.patchButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.patchButton2.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.patchButton2.Font = new System.Drawing.Font("Beon", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.patchButton2.Location = new System.Drawing.Point(0, 253);
             this.patchButton2.Name = "patchButton2";
-            this.patchButton2.Size = new System.Drawing.Size(195, 47);
+            this.patchButton2.Size = new System.Drawing.Size(195, 48);
             this.patchButton2.TabIndex = 2;
             this.patchButton2.TabStop = false;
             this.patchButton2.Text = "Read more...";
@@ -332,7 +352,7 @@
             // patchTitle2
             // 
             this.patchTitle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.patchTitle2.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.patchTitle2.Font = new System.Drawing.Font("Arizone Unicase", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.patchTitle2.Location = new System.Drawing.Point(0, 0);
             this.patchTitle2.Name = "patchTitle2";
             this.patchTitle2.Size = new System.Drawing.Size(195, 42);
@@ -346,7 +366,7 @@
             this.patchPanel3.Controls.Add(this.patchText3);
             this.patchPanel3.Controls.Add(this.patchButton3);
             this.patchPanel3.Controls.Add(this.patchTitle3);
-            this.patchPanel3.Location = new System.Drawing.Point(490, 76);
+            this.patchPanel3.Location = new System.Drawing.Point(490, 77);
             this.patchPanel3.Name = "patchPanel3";
             this.patchPanel3.Size = new System.Drawing.Size(195, 300);
             this.patchPanel3.TabIndex = 5;
@@ -355,23 +375,25 @@
             // 
             this.patchText3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.patchText3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.patchText3.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.patchText3.Font = new System.Drawing.Font("Arizone Pixel", 6F);
             this.patchText3.ForeColor = System.Drawing.SystemColors.Control;
             this.patchText3.Location = new System.Drawing.Point(0, 42);
             this.patchText3.Name = "patchText3";
-            this.patchText3.Size = new System.Drawing.Size(195, 216);
+            this.patchText3.Padding = new System.Windows.Forms.Padding(4);
+            this.patchText3.Size = new System.Drawing.Size(195, 217);
             this.patchText3.TabIndex = 3;
             // 
             // patchButton3
             // 
             this.patchButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.patchButton3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.patchButton3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.patchButton3.FlatAppearance.BorderSize = 0;
             this.patchButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.patchButton3.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.patchButton3.Font = new System.Drawing.Font("Beon", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.patchButton3.Location = new System.Drawing.Point(0, 253);
             this.patchButton3.Name = "patchButton3";
-            this.patchButton3.Size = new System.Drawing.Size(195, 47);
+            this.patchButton3.Size = new System.Drawing.Size(195, 48);
             this.patchButton3.TabIndex = 2;
             this.patchButton3.TabStop = false;
             this.patchButton3.Text = "Read more...";
@@ -381,7 +403,7 @@
             // patchTitle3
             // 
             this.patchTitle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.patchTitle3.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.patchTitle3.Font = new System.Drawing.Font("Arizone Unicase", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.patchTitle3.Location = new System.Drawing.Point(0, 0);
             this.patchTitle3.Name = "patchTitle3";
             this.patchTitle3.Size = new System.Drawing.Size(195, 42);
@@ -391,12 +413,13 @@
             // 
             // patchContainerPanel
             // 
-            this.patchContainerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.patchContainerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.patchContainerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.patchContainerPanel.Controls.Add(this.label5);
             this.patchContainerPanel.Controls.Add(this.patchPanel2);
             this.patchContainerPanel.Controls.Add(this.patchPanel1);
             this.patchContainerPanel.Controls.Add(this.patchPanel3);
-            this.patchContainerPanel.Location = new System.Drawing.Point(144, 106);
+            this.patchContainerPanel.Location = new System.Drawing.Point(144, 105);
             this.patchContainerPanel.Name = "patchContainerPanel";
             this.patchContainerPanel.Size = new System.Drawing.Size(717, 397);
             this.patchContainerPanel.TabIndex = 4;
@@ -404,10 +427,10 @@
             // label5
             // 
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 25.25F, System.Drawing.FontStyle.Italic);
+            this.label5.Font = new System.Drawing.Font("Arizone Unicase", 21.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(0, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(717, 73);
+            this.label5.Size = new System.Drawing.Size(717, 74);
             this.label5.TabIndex = 6;
             this.label5.Text = "Patch Notes";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -415,36 +438,63 @@
             // playButton
             // 
             this.playButton.BackColor = System.Drawing.SystemColors.Highlight;
+            this.playButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.playButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.playButton.FlatAppearance.BorderSize = 0;
             this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.playButton.Font = new System.Drawing.Font("Segoe UI", 25.25F, System.Drawing.FontStyle.Bold);
-            this.playButton.Location = new System.Drawing.Point(825, 571);
+            this.playButton.Font = new System.Drawing.Font("Nebulous", 27.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playButton.Location = new System.Drawing.Point(820, 12);
             this.playButton.Name = "playButton";
-            this.playButton.Size = new System.Drawing.Size(191, 60);
+            this.playButton.Size = new System.Drawing.Size(191, 61);
             this.playButton.TabIndex = 0;
             this.playButton.TabStop = false;
             this.playButton.Text = "Play";
             this.playButton.UseVisualStyleBackColor = false;
             this.playButton.Click += new System.EventHandler(this.OnClickPlay);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.Controls.Add(this.clientReadyLabel);
+            this.panel1.Controls.Add(this.playButton);
+            this.panel1.Controls.Add(this.updateProgressBar);
+            this.panel1.Location = new System.Drawing.Point(0, 560);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1028, 84);
+            this.panel1.TabIndex = 5;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.panel2.Location = new System.Drawing.Point(-20, 72);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1116, 4);
+            this.panel2.TabIndex = 6;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel3.Location = new System.Drawing.Point(0, 557);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1116, 4);
+            this.panel3.TabIndex = 7;
+            // 
             // Application
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1028, 643);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.patchContainerPanel);
-            this.Controls.Add(this.clientReadyLabel);
             this.Controls.Add(this.navbarPanel);
             this.Controls.Add(this.currentVersionLabel);
             this.Controls.Add(this.updateLabelText);
-            this.Controls.Add(this.updateProgressBar);
-            this.Controls.Add(this.playButton);
+            this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.Font = new System.Drawing.Font("Nebulous", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.Control;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Application";
@@ -461,6 +511,7 @@
             this.patchPanel2.ResumeLayout(false);
             this.patchPanel3.ResumeLayout(false);
             this.patchContainerPanel.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -496,6 +547,9 @@
         private System.Windows.Forms.Panel patchContainerPanel;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox logoPictureBox;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
     }
 }
 

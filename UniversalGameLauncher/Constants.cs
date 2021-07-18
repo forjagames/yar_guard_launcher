@@ -16,7 +16,8 @@ namespace UniversalGameLauncher
         /// <summary>
         /// Paths & urls
         /// </summary>
-        public static readonly string DESTINATION_PATH = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), GAME_EXE);
+        //public static readonly string DESTINATION_PATH = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), GAME_EXE);
+        public static readonly string DESTINATION_PATH = Path.Combine(Environment.CurrentDirectory, GAME_EXE);
         public static readonly string ZIP_PATH = Path.Combine(DESTINATION_PATH, GAME_EXE + ".zip");
         public static readonly string GAME_EXECUTABLE_PATH = Path.Combine(DESTINATION_PATH, GAME_EXE + ".exe");
 

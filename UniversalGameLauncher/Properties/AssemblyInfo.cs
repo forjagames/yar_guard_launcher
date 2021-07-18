@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("UniversalGameLauncher")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Y'ar Guard - Launcher")]
+[assembly: AssemblyDescription("Y'ar Guard - Launcher")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("UniversalGameLauncher")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCompany("Forja Games")]
+[assembly: AssemblyProduct("Y'ar Guard - Launcher")]
+[assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

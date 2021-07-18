@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -115,13 +116,13 @@ namespace UniversalGameLauncher
 
                 if (Constants.PANEL_ALPHA > 128)
                 {
-                    closePictureBox.BackColor = Color.FromArgb(255, 255, 255, 255);
-                    minimizePictureBox.BackColor = Color.FromArgb(255, 255, 255, 255);
+                    closePictureBox.BackColor = Color.FromArgb(255, closePictureBox.BackColor.R, closePictureBox.BackColor.G, closePictureBox.BackColor.B);
+                    minimizePictureBox.BackColor = Color.FromArgb(255, minimizePictureBox.BackColor.R, minimizePictureBox.BackColor.G, minimizePictureBox.BackColor.B);
                 }
                 else
                 {
-                    closePictureBox.BackColor = Color.FromArgb(0, 255, 255, 255);
-                    minimizePictureBox.BackColor = Color.FromArgb(0, 255, 255, 255);
+                    closePictureBox.BackColor = Color.FromArgb(0, closePictureBox.BackColor.R, closePictureBox.BackColor.G, closePictureBox.BackColor.B);
+                    minimizePictureBox.BackColor = Color.FromArgb(0, minimizePictureBox.BackColor.R, minimizePictureBox.BackColor.G, minimizePictureBox.BackColor.B);
                 }
 
                 this.LoadLogoImage();
@@ -151,6 +152,23 @@ namespace UniversalGameLauncher
             logoPictureBox.LoadAsync(Constants.LOGO_URL);
         }
 
+        private Image SetImageOpacity(Image image, float opacity)
+        {
+            Bitmap bmp = new Bitmap(image.Width, image.Height);
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                ColorMatrix matrix = new ColorMatrix();
+                matrix.Matrix33 = opacity;
+                ImageAttributes attributes = new ImageAttributes();
+                attributes.SetColorMatrix(matrix, ColorMatrixFlag.Default,
+                                                  ColorAdjustType.Bitmap);
+                g.DrawImage(image, new Rectangle(0, 0, bmp.Width, bmp.Height),
+                                   0, 0, image.Width, image.Height,
+                                   GraphicsUnit.Pixel, attributes);
+            }
+            return bmp;
+        }
+
         private void LoadBackgroundImage()
         {
             if (Constants.CACHE_IMAGES)
@@ -162,7 +180,8 @@ namespace UniversalGameLauncher
                     DownloadFileSync(Constants.BACKGROUND_URL, filename);
                 }
 
-                BackgroundImage = Image.FromFile(filename);
+                BackgroundImage = SetImageOpacity(Image.FromFile(filename), 0.8f);
+                //BackgroundImage = Image.FromFile(filename);
                 return;
             }
 
@@ -521,11 +540,11 @@ namespace UniversalGameLauncher
             var pictureBox = (PictureBox)sender;
             if (Constants.PANEL_ALPHA > 128)
             {
-                pictureBox.BackColor = Color.FromArgb(180, 255, 255, 255);
+                pictureBox.BackColor = Color.FromArgb(180, pictureBox.BackColor.R, pictureBox.BackColor.G, pictureBox.BackColor.B);
             }
             else
             {
-                pictureBox.BackColor = Color.FromArgb(50, 255, 255, 255);
+                pictureBox.BackColor = Color.FromArgb(50, pictureBox.BackColor.R, pictureBox.BackColor.G, pictureBox.BackColor.B);
             }
         }
 
@@ -534,11 +553,11 @@ namespace UniversalGameLauncher
             var pictureBox = (PictureBox)sender;
             if (Constants.PANEL_ALPHA > 128)
             {
-                pictureBox.BackColor = Color.FromArgb(255, 255, 255, 255);
+                pictureBox.BackColor = Color.FromArgb(255, pictureBox.BackColor.R, pictureBox.BackColor.G, pictureBox.BackColor.B);
             }
             else
             {
-                pictureBox.BackColor = Color.FromArgb(0, 255, 255, 255);
+                pictureBox.BackColor = Color.FromArgb(0, pictureBox.BackColor.R, pictureBox.BackColor.G, pictureBox.BackColor.B);
             }
         }
 
