@@ -429,7 +429,9 @@ namespace UniversalGameLauncher
             {
                 patchContainerPanel.Visible = false;
                 if (Constants.SHOW_ERROR_BOX_IF_PATCH_NOTES_DOWNLOAD_FAILS)
+                {
                     MessageBox.Show("The launcher was unable to retrieve patch notes from the server!");
+                }
             }
 
             var controles = new[] { patchPanel1, patchPanel2, patchPanel3 };

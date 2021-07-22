@@ -37,10 +37,10 @@ namespace UniversalGameLauncher
         public static readonly string NAVBAR_BUTTON_2_URL = "http://forjagames.com";
         public static readonly string NAVBAR_BUTTON_3_TEXT = "Community";
         public static readonly string NAVBAR_BUTTON_3_URL = "https://itch.io/profile/forjagames";
-        public static readonly string NAVBAR_BUTTON_4_TEXT = "Github";
-        public static readonly string NAVBAR_BUTTON_4_URL = "https://github.com/forjagames";
-        public static readonly string NAVBAR_BUTTON_5_TEXT = "Twitter";
-        public static readonly string NAVBAR_BUTTON_5_URL = "https://twitter.com/forjagames";
+        public static readonly string NAVBAR_BUTTON_4_TEXT = "Twitter";
+        public static readonly string NAVBAR_BUTTON_4_URL = "https://twitter.com/forjagames";
+        public static readonly string NAVBAR_BUTTON_5_TEXT = "Github";
+        public static readonly string NAVBAR_BUTTON_5_URL = "https://github.com/forjagames";
 
         // Modify this array if you're adding or removing a button
         public static readonly string[] NAVBAR_BUTTON_TEXT_ARRAY = {NAVBAR_BUTTON_1_TEXT, NAVBAR_BUTTON_2_TEXT, NAVBAR_BUTTON_3_TEXT,
@@ -54,7 +54,7 @@ namespace UniversalGameLauncher
         public static bool SHOW_VERSION_TEXT = true;
         public static bool AUTOMATICALLY_BEGIN_UPDATING = false;
         public static bool AUTOMATICALLY_LAUNCH_GAME_AFTER_UPDATING = false;
-        public static bool SHOW_ERROR_BOX_IF_PATCH_NOTES_DOWNLOAD_FAILS = true;
+        public static bool SHOW_ERROR_BOX_IF_PATCH_NOTES_DOWNLOAD_FAILS = false;
 
     }
 }
