@@ -422,7 +422,11 @@ namespace UniversalGameLauncher
                                 break;
                         }
                     }
-                    patchNoteBlocks.Add(block);
+
+                    if (!string.IsNullOrEmpty(block.Text))
+                    {
+                        patchNoteBlocks.Add(block);
+                    }
                 }
             }
             catch
@@ -443,6 +447,11 @@ namespace UniversalGameLauncher
             Button[] patchButtons = { patchButton1, patchButton2, patchButton3 };
             Label[] patchTitleObjects = { patchTitle1, patchTitle2, patchTitle3 };
             Label[] patchTextObjects = { patchText1, patchText2, patchText3 };
+
+            while (patchNoteBlocks.Count > controles.Length)
+            {
+                patchNoteBlocks.RemoveAt(0);
+            }
 
             for (int i = 0; i < patchNoteBlocks.Count; i++)
             {
